@@ -80,7 +80,7 @@ export default {
         author: this.$route.params.author,
         type: this.$route.params.language,
         price: Number(this.$route.params.price),
-        bookId: this.$route.params.bookId,
+        bookId: Number(this.$route.params.bookId),
       },
       rules: {
         bookName: [{ required: true, message: "请输入书名", trigger: "blur" }],
