@@ -79,7 +79,7 @@ export default {
         bookType: Number(this.$route.params.bookType),
         author: this.$route.params.author,
         type: this.$route.params.language,
-        price: this.$route.params.price,
+        price: Number(this.$route.params.price),
         bookId: this.$route.params.bookId,
       },
       rules: {
