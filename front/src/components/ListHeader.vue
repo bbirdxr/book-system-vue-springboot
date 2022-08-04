@@ -1,8 +1,8 @@
 <template>
   <div id="MyHeader">
-    <div>图书管理系统</div>
-    <div><el-button @click="logout" size="large">退出</el-button></div>
-  </div>
+    <div style="margin-left:20px;font-size:40px"><i><b>图书管理系统~</b></i></div>
+    <div><el-button @click="logout" size="large" style="margin-right:20px">退出</el-button></div>
+  </div> 
 </template>
 <script>
 // import request from "@/utils/request";
