@@ -4,7 +4,7 @@
       <div
         style="
           text-align: center;
-          margin-bottom: 50px;
+          margin-bottom: 20px;
           font-weight: bold;
           font-size: xx-large;
         "
@@ -35,22 +35,15 @@
           ></el-input>
         </el-form-item>
 
-        <el-select
-          v-model="userClass"
-          placeholder="请选择用户组"
-          style="margin-bottom: 20px; margin-left: 100px"
-        >
-          <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          >
-          </el-option>
-        </el-select>
+          <el-form-item label="用户组" prop="userClass">
+            <el-select v-model="ruleForm.userClass" placeholder="请选择">
+              <el-option label="管理员" :value="0"></el-option>
+              <el-option label="用户" :value="1"></el-option>
+            </el-select>
+          </el-form-item>
 
         <el-form-item>
-          <el-button type="primary" v-on:click="login">登录</el-button>
+          <el-button type="primary" v-on:click="login" style="width:70px">登录</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -61,43 +54,17 @@
 export default {
   name: "Login",
   data() {
-    var validatePass = (rule, value, callback) => {
-      if (value === "") {
-        callback(new Error("请输入账户"));
-      } else {
-        if (this.ruleForm.pass !== "") {
-          this.$refs.ruleForm.validateField("pass");
-        }
-        callback();
-      }
-    };
-    var validatePass2 = (rule, value, callback) => {
-      if (value === "") {
-        callback(new Error("请输入密码"));
-      } else {
-        callback();
-      }
-    };
     return {
       ruleForm: {
         user: "",
         pass: "",
+        userClass: "",
       },
       rules: {
-        user: [{ validator: validatePass, trigger: "blur" }],
-        pass: [{ validator: validatePass2, trigger: "blur" }],
+        user: [{ required: true, message: "请输入账号", trigger: "blur" }],
+        pass: [{ required: true, message: "请输入密码", trigger: "blur" }],
+        userClass: [{ required: true, message: "请选择", trigger: "change" }]
       },
-      options: [
-        {
-          value: "0",
-          label: "管理员",
-        },
-        {
-          value: "1",
-          label: "普通用户",
-        },
-      ],
-      userClass: "",
       isLogin: false,
     };
   },
@@ -109,7 +76,7 @@ export default {
       })
         .then((res) => {
           console.log(res.data);
-          if (res.data.code != 200) {
+          if (res.data.code == 200) {
             alert("登录成功");
             if (this.userClass == 0) this.$router.push("/adminmanagelist");
             else this.$router.push("/userchecklist");
@@ -129,10 +96,6 @@ export default {
 </script>
 
 <style scoped>
-* {
-  margin: 0;
-  padding: 0;
-}
 #login-container {
   width: 380px;
   height: 360px;
