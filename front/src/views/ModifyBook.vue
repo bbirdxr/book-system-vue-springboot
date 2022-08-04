@@ -141,9 +141,9 @@ export default {
 
 <style scoped>
 .table {
-  background: #c7eef4dd;
+  background: #ffffffdd;
   width: 100%;
-  height: 100%;
+  height: 88%;
   position: relative;
   border-radius: 10px;
   padding-top: 60px;
