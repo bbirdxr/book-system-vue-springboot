@@ -26,10 +26,16 @@
         </el-form-item>
 
         <el-form-item label="图书类别" prop="bookType" class="margin">
-          <el-select v-model="ruleForm.bookType" placeholder="请选择">
-            <el-option label="类别一" :value="0"></el-option>
-            <el-option label="类别二" :value="1"></el-option>
-          </el-select>
+          <span>
+            <el-select v-model="ruleForm.bookType" placeholder="请选择">
+              <el-option label="文学类" :value="1"></el-option>
+              <el-option label="历史类" :value="2"></el-option>
+              <el-option label="工学类" :value="3"></el-option>
+              <el-option label="法学类" :value="4"></el-option>
+              <el-option label="经济学类" :value="5"></el-option>
+              <el-option label="统计学类" :value="6"></el-option>
+            </el-select>
+          </span>
         </el-form-item>
 
         <el-form-item label="语言" prop="Type" class="margin">
@@ -70,7 +76,7 @@ export default {
     return {
       ruleForm: {
         bookName: this.$route.params.bookName,
-        bookType: this.$route.params.bookType,
+        bookType: this.$route.params.type,
         author: this.$route.params.author,
         type: this.$route.params.language,
         price: this.$route.params.price,
@@ -100,7 +106,7 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.$axios({
+          this.axios({
             url: "bookInf/modify",
             method: "post",
             data: {
@@ -113,7 +119,7 @@ export default {
             },
           }).then((res) => {
             console.log(res.data);
-            if (res.data.code == 201) {
+            if (res.data.code == 200) {
               alert("修改成功");
               this.$router.push("/adminmanagelist");
             } else {

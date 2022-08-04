@@ -54,7 +54,16 @@
     >
       <el-table-column prop="bookId" label="图书编号" />
       <el-table-column prop="bookName" label="名称" />
-      <el-table-column prop="type" label="类型" />
+      <el-table-column prop="type" label="类型">
+        <template #default="scope">
+          <span v-if="scope.row.type == 1">文学类</span>
+          <span v-if="scope.row.type == 2">历史类</span>
+          <span v-if="scope.row.type == 3">工学类</span>
+          <span v-if="scope.row.type == 4">法学类</span>
+          <span v-if="scope.row.type == 5">经济学类</span>
+          <span v-if="scope.row.type == 6">统计学类</span></template
+        >
+      </el-table-column>
       <el-table-column prop="author" label="作者" />
       <el-table-column prop="price" label="价格" />
       <el-table-column prop="language" label="语言" />
@@ -133,7 +142,7 @@ export default {
         {
           bookId: "001",
           bookName: "Tom",
-          type: "小说",
+          type: "1",
           author: "Ming",
           price: "30",
           language: "English",
@@ -141,7 +150,7 @@ export default {
         {
           bookId: "002",
           bookName: "Paly",
-          type: "小说",
+          type: "2",
           author: "Lise",
           price: "70",
           language: "English",
@@ -149,7 +158,7 @@ export default {
         {
           bookId: "003",
           bookName: "The old man",
-          type: "童话",
+          type: "3",
           author: "Rosel",
           price: "50",
           language: "Chinese",
@@ -157,7 +166,7 @@ export default {
         {
           bookId: "004",
           bookName: "Alice and dog",
-          type: "教材",
+          type: "4",
           author: "Euke",
           price: "25",
           language: "English",
@@ -212,7 +221,7 @@ export default {
         params: {
           bookName: row.bookName,
           bookId: row.bookId,
-          bookType: row.bookType,
+          bookType: 1,
           author: row.author,
           price: row.price,
           language: row.language,

@@ -103,7 +103,7 @@ export default {
   },
   methods: {
     login: function (e) {
-      this.$axios({
+      this.axios({
         url: `/login?userName=${this.ruleForm.user}&pwd=${this.ruleForm.pass}&type=${this.userClass}`,
         method: "get",
       })
