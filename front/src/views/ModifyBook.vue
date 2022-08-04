@@ -59,10 +59,10 @@
           <el-button
             type="primary"
             @click="submitForm('ruleForm')"
-            class="margin"
+            class="button1"
             >提交</el-button
           >
-          <el-button @click="resetForm('ruleForm')">重置</el-button>
+          <el-button @click="resetForm('ruleForm')" class="button2">重置</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -150,5 +150,13 @@ export default {
 }
 .margin {
   margin-left: 30%;
+}
+.button1{
+  width:60px;
+  margin-left: 400px;
+}
+.button2{
+  width:60px;
+  margin-left: 100px;
 }
 </style>
