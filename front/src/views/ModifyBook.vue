@@ -140,10 +140,6 @@ export default {
 </script>
 
 <style scoped>
-* {
-  margin: 0;
-  padding: 0;
-}
 .table {
   background: #c7eef4dd;
   width: 100%;
