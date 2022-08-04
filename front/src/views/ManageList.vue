@@ -140,7 +140,7 @@ export default {
       currentPage: 1,
       bookData: [
         {
-          bookId: "001",
+          bookId: "1001",
           bookName: "Tom",
           type: "1",
           author: "Ming",
@@ -148,7 +148,7 @@ export default {
           language: "英文",
         },
         {
-          bookId: "002",
+          bookId: "1002",
           bookName: "Paly",
           type: "2",
           author: "Lise",
@@ -156,7 +156,7 @@ export default {
           language: "英文",
         },
         {
-          bookId: "003",
+          bookId: "1003",
           bookName: "The old man",
           type: "3",
           author: "Rosel",
@@ -164,7 +164,7 @@ export default {
           language: "中文",
         },
         {
-          bookId: "004",
+          bookId: "1004",
           bookName: "Alice and dog",
           type: "4",
           author: "Euke",
