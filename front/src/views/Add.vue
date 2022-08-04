@@ -24,11 +24,11 @@
           </el-select>
         </el-form-item>
 
-        <el-form-item label="语言" prop="Type" class="margin">
+        <el-form-item label="语言" prop="type" class="margin">
           <el-select v-model="ruleForm.type" placeholder="请选择">
-            <el-option label="中文" :value="0"></el-option>
-            <el-option label="英文" :value="1"></el-option>
-            <el-option label="其他" :value="2"></el-option>
+            <el-option label="中文" value="中文"></el-option>
+            <el-option label="英文" value="英文"></el-option>
+            <el-option label="其他" value="其他"></el-option>
           </el-select>
         </el-form-item>
 
