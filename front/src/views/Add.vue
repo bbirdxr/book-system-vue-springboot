@@ -64,7 +64,7 @@ export default {
         bookName: "",
         bookType: 0,
         author: "",
-        type: 0,
+        type: "",
         price: "",
       },
       rules: {
