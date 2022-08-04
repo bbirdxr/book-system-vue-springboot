@@ -221,7 +221,7 @@ export default {
         params: {
           bookName: row.bookName,
           bookId: row.bookId,
-          bookType: 1,
+          bookType: row.bookType,
           author: row.author,
           price: row.price,
           language: row.language,
