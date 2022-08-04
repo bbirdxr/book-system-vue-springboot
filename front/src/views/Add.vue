@@ -103,7 +103,7 @@ export default {
             },
           }).then((res) => {
             console.log(res.data);
-            if (res.data.code == 201) {
+            if (res.data.code == 200) {
               alert("添加成功");
               this.$router.push("/adminmanagelist");
             } else {
@@ -124,10 +124,6 @@ export default {
 </script>
 
 <style scoped>
-* {
-  margin: 0;
-  padding: 0;
-}
 .table {
   background: #c7eef4dd;
   width: 100%;
