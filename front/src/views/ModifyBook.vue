@@ -76,7 +76,7 @@ export default {
     return {
       ruleForm: {
         bookName: this.$route.params.bookName,
-        bookType: this.$route.params.type,
+        bookType: Number(this.$route.params.bookType),
         author: this.$route.params.author,
         type: this.$route.params.language,
         price: this.$route.params.price,
