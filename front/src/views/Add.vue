@@ -19,8 +19,12 @@
 
         <el-form-item label="图书类别" prop="bookType" class="margin">
           <el-select v-model="ruleForm.bookType" placeholder="请选择">
-            <el-option label="类别一" :value="0"></el-option>
-            <el-option label="类别二" :value="1"></el-option>
+            <el-option label="文学类" :value="1"></el-option>
+            <el-option label="历史类" :value="2"></el-option>
+            <el-option label="工学类" :value="3"></el-option>
+            <el-option label="法学类" :value="4"></el-option>
+            <el-option label="经济学类" :value="5"></el-option>
+            <el-option label="统计学类" :value="6"></el-option>
           </el-select>
         </el-form-item>
 
@@ -62,9 +66,9 @@ export default {
     return {
       ruleForm: {
         bookName: "",
-        bookType: 0,
+        bookType: 1,
         author: "",
-        type: "",
+        type: "中文",
         price: "",
       },
       rules: {
