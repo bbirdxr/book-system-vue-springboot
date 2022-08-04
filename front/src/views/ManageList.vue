@@ -6,7 +6,7 @@
         图书编号
         <input
           type="string"
-          style="text-align: right; width: 200px; height: 20px"
+          style="text-align: left; width: 200px; height: 20px"
           v-model="inputBookId"
           @change="handleBookIdChange"
         />
@@ -16,7 +16,7 @@
         <input
           size="large"
           type="string"
-          style="text-align: right; width: 200px; height: 20px"
+          style="text-align: left; width: 200px; height: 20px"
           v-model="inputBookName"
           @change="handleBookNameChange"
         />
@@ -40,8 +40,8 @@
         </el-select>
       </span>
       <!--类别筛选-->
-      <span><el-button @click="query" size="large">查询</el-button></span>
-      <span><el-button size="large" @click="addBook">添加</el-button></span>
+      <span><el-button @click="query" size="large" style="background-color:rgba(22, 127, 231, 0.515)">查询</el-button></span>
+      <span><el-button size="large" @click="addBook" style="background-color:rgba(231, 154, 22, 0.464)">添加</el-button></span>
     </div>
     <!--搜索区域-->
     <!--表格-->
@@ -50,7 +50,7 @@
       :data="bookData"
       border="border"
       stripe
-      style="width: 1300px; margin: 10px"
+      style="width:auto; margin: 10px"
     >
       <el-table-column prop="bookId" label="图书编号" />
       <el-table-column prop="bookName" label="名称" />
@@ -145,7 +145,7 @@ export default {
           type: "1",
           author: "Ming",
           price: "30",
-          language: "English",
+          language: "英文",
         },
         {
           bookId: "002",
@@ -153,7 +153,7 @@ export default {
           type: "2",
           author: "Lise",
           price: "70",
-          language: "English",
+          language: "英文",
         },
         {
           bookId: "003",
@@ -161,7 +161,7 @@ export default {
           type: "3",
           author: "Rosel",
           price: "50",
-          language: "Chinese",
+          language: "中文",
         },
         {
           bookId: "004",
@@ -169,7 +169,7 @@ export default {
           type: "4",
           author: "Euke",
           price: "25",
-          language: "English",
+          language: "英文",
         },
       ],
     };
@@ -258,6 +258,7 @@ export default {
 
 <style scoped>
 #searchArea {
+  /* background-color: rgba(231, 154, 22, 0.464);  */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -266,4 +267,5 @@ export default {
   padding-left: 20px;
   padding-right: 20px;
 }
+
 </style>
