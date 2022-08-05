@@ -3,8 +3,8 @@
     <div id="login-container">
       <div
         style="
-          text-align: center;
           margin-bottom: 20px;
+          margin-left: 35%;
           font-weight: bold;
           font-size: xx-large;
         "
@@ -36,15 +36,29 @@
         </el-form-item>
 
         <el-form-item label="用户组" prop="userClass">
-          <el-select v-model="ruleForm.userClass" placeholder="请选择">
+          <el-select
+            v-model="ruleForm.userClass"
+            placeholder="请选择"
+            style="width: 300px"
+          >
             <el-option label="管理员" :value="0"></el-option>
             <el-option label="用户" :value="1"></el-option>
           </el-select>
         </el-form-item>
 
         <el-form-item>
-          <el-button type="primary" v-on:click="login" style="width: 70px"
-            >登录</el-button
+          <el-button
+            type="primary"
+            v-on:click="login"
+            style="
+              width: 80px;
+              margin-left: 65px;
+              font-size: x-large;
+              height: auto;
+              margin-top: 30px;
+              border-radius: 20px;
+            "
+            >登 录</el-button
           >
         </el-form-item>
       </el-form>
@@ -106,10 +120,10 @@ export default {
 <style scoped>
 #login-container {
   width: 380px;
-  height: 360px;
+  height: 340px;
   background: #ffffff99;
   position: absolute;
-  left: 40%;
+  left: 36%;
   top: 20%;
   border-radius: 40px;
   padding-top: 40px;
