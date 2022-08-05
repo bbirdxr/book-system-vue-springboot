@@ -5,10 +5,10 @@ const routes = [
   //重定向
   {
     path: "/",
-    redirect: "/login",
+    redirect: "/api/login",
   },
   //登录界面
-  { path: "/login", name: "Login", component: () => import("@/views/Login") },
+  { path: "/api/login", name: "Login", component: () => import("@/views/Login") },
   {
     //管理员页面布局路由
     path: "/adminlayout",

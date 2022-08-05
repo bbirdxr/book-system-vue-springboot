@@ -107,10 +107,10 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.axios({
-            url: "bookInf/modify",
+            url: "http://localhost:8090/bookinfo/modify",
             method: "post",
             data: {
-              bookId: this.ruleForm.id,
+              bookId: this.ruleForm.bookId,
               bookName: this.ruleForm.bookName,
               type: this.ruleForm.bookType,
               author: this.ruleForm.author,

@@ -31,7 +31,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         {
             if(oneuser.getID().equals(ID) && oneuser.getPassword().equals(password) && oneuser.getType() == type)
             {
-                userMapper.addUser(oneuser);
                 return Result.success();
             }
         }

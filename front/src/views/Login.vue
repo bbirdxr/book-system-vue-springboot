@@ -58,7 +58,7 @@ export default {
       ruleForm: {
         user: "",
         pass: "",
-        userClass: "",
+        userClass:0,
       },
       rules: {
         user: [{ required: true, message: "请输入账号", trigger: "blur" }],
@@ -71,14 +71,14 @@ export default {
   methods: {
     login: function (e) {
       this.axios({
-        url: `/login?userName=${this.ruleForm.user}&pwd=${this.ruleForm.pass}&type=${this.userClass}`,
+        url: `http://localhost:8090/login?ID=${this.ruleForm.user}&password=${this.ruleForm.pass}&type=${this.ruleForm.userClass}`,
         method: "get",
       })
         .then((res) => {
           console.log(res.data);
           if (res.data.code == 200) {
             alert("登录成功");
-            if (this.userClass == 0) this.$router.push("/adminmanagelist");
+            if (this.ruleForm.userClass == 0) this.$router.push("/adminmanagelist");
             else this.$router.push("/userchecklist");
 
             //登录成功
