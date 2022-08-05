@@ -95,7 +95,7 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           request
-            .post("bookInf/add", {
+            .post("/bookinfo/add", {
               params: {
                 bookName: this.ruleForm.bookName,
                 type: this.ruleForm.bookType,

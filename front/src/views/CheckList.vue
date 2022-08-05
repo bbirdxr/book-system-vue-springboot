@@ -142,7 +142,7 @@ export default {
       console.log(this.pageSize);
       console.log(this.search);
       request
-        .get("http://localhost:8090/bookinfo/search", {
+        .get("bookinfo/search", {
           params: {
             currentPage: this.currentPage,
             pageSize: this.pageSize,

@@ -194,7 +194,7 @@ export default {
       console.log(this.pageSize);
       console.log(this.search);
       request
-        .get("/bookinfo", {
+        .get("/bookinfo/search", {
           params: {
             currentPage: this.currentPage,
             pageSize: this.pageSize,
@@ -243,7 +243,7 @@ export default {
     },
     handleDeleteConfirm(bookId) {
       console.log(" delete   " + bookId);
-      request.delete("/deletebook/" + bookId).then((res) => {
+      request.delete("/bookinfo/delete" + bookId).then((res) => {
         if (res.code === 200) {
           this.$message({
             type: "success",
