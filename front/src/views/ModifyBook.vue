@@ -39,11 +39,12 @@
         </el-form-item>
 
         <el-form-item label="语言" prop="type" class="margin">
-          <el-select v-model="ruleForm.type" placeholder="请选择">
-            <el-option label="中文" value="中文"></el-option>
-            <el-option label="英文" value="英文"></el-option>
-            <el-option label="其他" value="其他"></el-option>
-          </el-select>
+          <el-input
+            type="type"
+            v-model.number="ruleForm.type"
+            autocomplete="off"
+            style="width: 400px"
+          ></el-input>
         </el-form-item>
 
         <el-form-item label="价格" prop="price" class="margin">
@@ -62,7 +63,9 @@
             class="button1"
             >提交</el-button
           >
-          <el-button @click="resetForm('ruleForm')" class="button2">重置</el-button>
+          <el-button @click="resetForm('ruleForm')" class="button2"
+            >重置</el-button
+          >
         </el-form-item>
       </el-form>
     </div>
@@ -92,7 +95,7 @@ export default {
           {
             required: true,
             message: "请选择",
-            trigger: "change",
+            trigger: "blur",
           },
         ],
         price: [
@@ -151,12 +154,12 @@ export default {
 .margin {
   margin-left: 30%;
 }
-.button1{
-  width:60px;
+.button1 {
+  width: 60px;
   margin-left: 400px;
 }
-.button2{
-  width:60px;
+.button2 {
+  width: 60px;
   margin-left: 100px;
 }
 </style>
