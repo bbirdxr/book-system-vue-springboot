@@ -75,9 +75,9 @@ export default {
   methods: {
     login: function (e) {
       request
-        .post("/login", {
+        .get("/login", {
           params: {
-            userName: this.ruleForm.user,
+            ID: this.ruleForm.user,
             password: this.ruleForm.pass,
             type: this.ruleForm.userClass,
           },
