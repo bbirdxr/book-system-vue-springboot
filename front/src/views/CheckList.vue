@@ -6,7 +6,7 @@
         图书编号
         <input
           type="string"
-          style="text-align: right; width: 200px; height: 20px"
+          style="text-align: left; width: 200px; height: 20px"
           v-model="inputBookId"
           @change="handleBookIdChange"
         />
@@ -16,7 +16,7 @@
         <input
           size="large"
           type="string"
-          style="text-align: right; width: 200px; height: 20px"
+          style="text-align: left; width: 200px; height: 20px"
           v-model="inputBookName"
           @change="handleBookNameChange"
         />
@@ -40,7 +40,7 @@
         </el-select>
       </span>
       <!--类别筛选-->
-      <span><el-button @click="query" size="large">查询</el-button></span>
+      <span><el-button @click="query" size="large" style="background-color: rgba(230, 139, 12, 0.404)">查询</el-button></span>
     </div>
     <!--搜索区域-->
     <!--表格-->
@@ -49,7 +49,7 @@
       :data="bookData"
       border="border"
       stripe
-      style="width: 1300px; margin: 10px"
+      style="width: auto; margin: 10px"
     >
       <el-table-column prop="bookId" label="图书编号" />
       <el-table-column prop="bookName" label="名称" />
