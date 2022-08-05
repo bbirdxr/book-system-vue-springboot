@@ -52,11 +52,11 @@ public class BookController {
     }
 
     @RequestMapping("/search")//(改，需分页）
-    public List<Book> findbookbyidnametype(@RequestParam(value = "currentpage",required = true) Integer currentPage,
-                                           @RequestParam(value = "pagesize",required = true) Integer pageSize,
+    public List<Book> findbookbyidnametype(@RequestParam(value = "currentPage",required = true) Integer currentPage,
+                                           @RequestParam(value = "pageSize",required = true) Integer pageSize,
                                            @RequestParam(value = "bookId",required = false,defaultValue = "-1") Integer bookId,
                                            @RequestParam(value = "bookName",required = false,defaultValue = "-1") String bookName,
-                                           @RequestParam(value = "booktype",required = false,defaultValue = "-1") Integer bookType)
+                                           @RequestParam(value = "bookType",required = false,defaultValue = "-1") Integer bookType)
     {
         Integer returnid = (currentPage-1)*pageSize + bookId;
         return  bookService.findbookbyidnametype(returnid,bookName,bookType);

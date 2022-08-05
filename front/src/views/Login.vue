@@ -62,7 +62,7 @@ export default {
       ruleForm: {
         user: "",
         pass: "",
-        userClass: "",
+        userClass: 0,
       },
       rules: {
         user: [{ required: true, message: "请输入账号", trigger: "blur" }],
@@ -89,7 +89,6 @@ export default {
             if (this.ruleForm.userClass == 0)
               this.$router.push("/adminmanagelist");
             else this.$router.push("/userchecklist");
-
             //登录成功
           } else {
             alert("登录失败");

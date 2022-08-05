@@ -29,16 +29,14 @@
         </el-form-item>
 
         <el-form-item label="语言" prop="type" class="margin">
-          <el-select v-model="ruleForm.type" placeholder="请选择">
-            <el-option label="中文" value="中文"></el-option>
-            <el-option label="英文" value="英文"></el-option>
-            <el-option label="其他" value="其他"></el-option>
-          </el-select>
+          <el-input
+            v-model.number="ruleForm.type"
+            autocomplete="off"
+            style="width: 400px"
+          ></el-input>
         </el-form-item>
-
         <el-form-item label="价格" prop="price" class="margin">
           <el-input
-            type="price"
             v-model.number="ruleForm.price"
             autocomplete="off"
             style="width: 400px"
@@ -82,7 +80,7 @@ export default {
           {
             required: true,
             message: "请选择",
-            trigger: "change",
+            trigger: "blur",
           },
         ],
         price: [
