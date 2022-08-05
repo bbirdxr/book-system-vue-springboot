@@ -73,6 +73,8 @@
 </template>
 
 <script>
+import request from "@/utils/request";
+
 export default {
   name: "ModifyBook",
   data() {
@@ -109,26 +111,26 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.axios({
-            url: "bookInf/modify",
-            method: "post",
-            data: {
-              bookId: this.ruleForm.id,
-              bookName: this.ruleForm.bookName,
-              type: this.ruleForm.bookType,
-              author: this.ruleForm.author,
-              price: this.ruleForm.price,
-              language: this.ruleForm.type,
-            },
-          }).then((res) => {
-            console.log(res.data);
-            if (res.data.code == 200) {
-              alert("修改成功");
-              this.$router.push("/adminmanagelist");
-            } else {
-              alert("修改失败");
-            }
-          });
+          request
+            .post("/bookInf/modify", {
+              params: {
+                bookId: this.ruleForm.bookId,
+                bookName: this.ruleForm.bookName,
+                type: this.ruleForm.bookType,
+                author: this.ruleForm.author,
+                price: this.ruleForm.price,
+                language: this.ruleForm.type,
+              },
+            })
+            .then((res) => {
+              console.log(res.data);
+              if (res.data.code == 200) {
+                alert("修改成功");
+                this.$router.push("/adminmanagelist");
+              } else {
+                alert("修改失败");
+              }
+            });
         } else {
           alert("请提交有效的信息");
           return false;

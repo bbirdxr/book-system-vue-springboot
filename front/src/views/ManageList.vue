@@ -40,8 +40,22 @@
         </el-select>
       </span>
       <!--类别筛选-->
-      <span><el-button @click="query" size="large" style="background-color:rgba(22, 127, 231, 0.515)">查询</el-button></span>
-      <span><el-button size="large" @click="addBook" style="background-color:rgba(231, 154, 22, 0.464)">添加</el-button></span>
+      <span
+        ><el-button
+          @click="query"
+          size="large"
+          style="background-color: rgba(22, 127, 231, 0.515)"
+          >查询</el-button
+        ></span
+      >
+      <span
+        ><el-button
+          size="large"
+          @click="addBook"
+          style="background-color: rgba(231, 154, 22, 0.464)"
+          >添加</el-button
+        ></span
+      >
     </div>
     <!--搜索区域-->
     <!--表格-->
@@ -50,7 +64,7 @@
       :data="bookData"
       border="border"
       stripe
-      style="width:auto; margin: 10px"
+      style="width: auto; margin: 10px"
     >
       <el-table-column prop="bookId" label="图书编号" />
       <el-table-column prop="bookName" label="名称" />
@@ -180,7 +194,7 @@ export default {
       console.log(this.pageSize);
       console.log(this.search);
       request
-        .get("/book", {
+        .get("/bookinfo", {
           params: {
             currentPage: this.currentPage,
             pageSize: this.pageSize,
@@ -188,8 +202,7 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res);
-          this.bookData = res.data.books;
+          this.bookData = res.data.records;
           this.total = res.data.total;
         });
     },
@@ -267,5 +280,4 @@ export default {
   padding-left: 20px;
   padding-right: 20px;
 }
-
 </style>

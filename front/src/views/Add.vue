@@ -60,6 +60,7 @@
 </template>
 
 <script>
+import request from "@/utils/request";
 export default {
   name: "Add",
   data() {
@@ -95,25 +96,25 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.$axios({
-            url: "bookInf/add",
-            method: "post",
-            data: {
-              bookName: this.ruleForm.bookName,
-              type: this.ruleForm.bookType,
-              author: this.ruleForm.author,
-              price: this.ruleForm.price,
-              language: this.ruleForm.type,
-            },
-          }).then((res) => {
-            console.log(res.data);
-            if (res.data.code == 200) {
-              alert("添加成功");
-              this.$router.push("/adminmanagelist");
-            } else {
-              alert("添加失败");
-            }
-          });
+          request
+            .post("bookInf/add", {
+              params: {
+                bookName: this.ruleForm.bookName,
+                type: this.ruleForm.bookType,
+                author: this.ruleForm.author,
+                price: this.ruleForm.price,
+                language: this.ruleForm.type,
+              },
+            })
+            .then((res) => {
+              console.log(res.data);
+              if (res.data.code == 200) {
+                alert("添加成功");
+                this.$router.push("/adminmanagelist");
+              } else {
+                alert("添加失败");
+              }
+            });
         } else {
           alert("请提交有效的信息");
           return false;

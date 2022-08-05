@@ -151,7 +151,7 @@ export default {
         })
         .then((res) => {
           console.log(res);
-          this.bookData = res.data.books;
+          this.bookData = res.data.records;
           this.total = res.data.total;
         });
     },
