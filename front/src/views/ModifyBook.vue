@@ -12,7 +12,6 @@
         <el-form-item label="id" prop="bookId" class="margin">
           <el-input
             v-model="ruleForm.bookId"
-            style="width: 400px"
             :disabled="true"
           ></el-input>
         </el-form-item>
@@ -154,14 +153,15 @@ export default {
   padding-top: 60px;
 }
 .margin {
-  margin-left: 30%;
+  margin-left: 34%;
+  width: 326px
 }
 .button1 {
   width: 60px;
-  margin-left: 400px;
+  margin-left: 500px;
 }
 .button2 {
   width: 60px;
-  margin-left: 100px;
+  margin-left: 20px;
 }
 </style>
