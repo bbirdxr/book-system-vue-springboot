@@ -21,6 +21,9 @@ public class Result {
     public static Result error(String code,String message){
         return new Result(code,message,null);
     }
+    public static Result error(String code,String message,Object data){
+        return new Result(code,message,data);
+    }
     public static Result error(){
         return new Result(Constants.CODE_500,"",null);
     }

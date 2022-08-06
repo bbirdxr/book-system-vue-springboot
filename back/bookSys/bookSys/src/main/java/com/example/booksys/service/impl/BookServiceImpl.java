@@ -91,30 +91,20 @@ public class BookServiceImpl extends ServiceImpl<BookMapper, Book> implements IB
 
     @Override
     public Result findbookbyidnametype(Integer currentPage, Integer pageSize, Map<String,String> search) {
-        List<Book> findbook = new ArrayList<>();
-        List<Book> allbook = bookMapper.findAllBook();
-        for (Book onebook:allbook)
-        {
-            if(onebook.getBookId().equals(search.get("bookId")) || onebook.getBookName().equals(search.get("bookName")) || onebook.getType().equals(search.get("bookType")))
-            {
-                findbook.add(onebook);
-            }
-        }
-        if(findbook.size() == 0)
-        {
-            return Result.error("400","查无此书");
-        }
-        /*List<Book> returnbook = findbook.subList((currentPage-1)*pageSize,currentPage*pageSize);
-        Result result  = Result.success(returnbook);
-        result.setMessage("查询成功!");
-        return result;*/
-        //有问题（Bookname）
+//        POST http://localhost:8091/bookinfo/search?currentPage=1&pageSize=3
+//        Content-Type: application/json
+//
+//        {
+//            "bookId": "10002",
+//                "bookName": "",
+//                "bookType": "1"
+//        }
         LambdaQueryWrapper<Book> wrapper = Wrappers.<Book>lambdaQuery()
-                .eq(Book::getBookId,search.get("bookId"))
+                .eq(Book::getBookId,Integer.valueOf(search.get("bookId")))
                 .or()
                 .eq(Book::getBookName,search.get("bookName"))
                 .or()
-                .eq(Book::getType,Integer.getInteger(search.get("type")));
+                .eq(Book::getType,Integer.valueOf(search.get("bookType")));
         Page<Book> bookPage = bookMapper.selectPage(new Page<>(currentPage,pageSize),wrapper);
 
         Result result  = Result.success(bookPage);

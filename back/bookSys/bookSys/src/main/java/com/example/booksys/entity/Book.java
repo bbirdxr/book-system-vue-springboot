@@ -1,6 +1,7 @@
 package com.example.booksys.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
@@ -28,6 +29,7 @@ public class Book implements Serializable {
     private Integer bookId;
 
     @ApiModelProperty("书名")
+    @TableField(value = "bookName")
     private String bookName;
 
     @ApiModelProperty("类型")
