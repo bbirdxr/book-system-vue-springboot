@@ -109,14 +109,12 @@ export default {
         if (valid) {
           request
             .post("/bookinfo/modify", {
-              params: {
-                bookId: this.ruleForm.bookId,
-                bookName: this.ruleForm.bookName,
-                type: this.ruleForm.bookType,
-                author: this.ruleForm.author,
-                price: this.ruleForm.price,
-                language: this.ruleForm.type,
-              },
+              bookId: this.ruleForm.bookId,
+              bookName: this.ruleForm.bookName,
+              type: this.ruleForm.bookType,
+              author: this.ruleForm.author,
+              price: this.ruleForm.price,
+              language: this.ruleForm.type,
             })
             .then((res) => {
               console.log(res);

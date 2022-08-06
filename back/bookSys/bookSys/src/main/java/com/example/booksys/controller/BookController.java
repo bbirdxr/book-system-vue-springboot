@@ -48,7 +48,7 @@ public class BookController {
     }
 
     @RequestMapping("/delete")
-    public Result deletebookbyid(@RequestParam("id") Integer id)
+    public Result deletebookbyid(@RequestParam(value = "bookId",required = true) Integer id)
     {
         return bookService.deletebookbyid(id);
     }

@@ -244,8 +244,8 @@ export default {
     },
     handleDeleteConfirm(bookId) {
       console.log(" delete   " + bookId);
-      request.delete("/bookinfo/delete" + bookId).then((res) => {
-        if (res.code === 200) {
+      request.delete("/bookinfo/delete?bookId=" + bookId).then((res) => {
+        if (res.code == 200) {
           this.$message({
             type: "success",
             message: "删除成功！",
