@@ -31,14 +31,11 @@ public class UserController {
     @Autowired
     private UserServiceImpl userService;
 
-    public UserController() {
-    }
-
     @RequestMapping
-    public Result login(@RequestParam(value = "ID",required = true) String ID,
-                        @RequestParam(value = "password",required = true)String password,
+    public Result login(@RequestParam(value = "userName",required = true) String userName,
+                        @RequestParam(value = "pwd",required = true)String pwd,
                         @RequestParam(value = "type",required = true)Integer type) {
-        return  userService.login(ID, password, type);
+        return  userService.login(userName, pwd, type);
     }
 }
 

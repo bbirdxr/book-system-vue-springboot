@@ -1,5 +1,9 @@
 package com.example.booksys.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.booksys.common.Result;
 import com.example.booksys.entity.Book;
 import com.example.booksys.entity.User;
@@ -9,7 +13,9 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -55,7 +61,7 @@ public class BookServiceImpl extends ServiceImpl<BookMapper, Book> implements IB
         }
         else//无此书
         {
-            return  Result.error("400","参数错误");
+            return  Result.error("400","查无此书");
         }
     }
 
@@ -79,21 +85,41 @@ public class BookServiceImpl extends ServiceImpl<BookMapper, Book> implements IB
         }
         else//无此书
         {
-            return  Result.error("400","参数错误");
+            return  Result.error("400","查无此书");
         }
     }
 
     @Override
-    public List<Book> findbookbyidnametype(Integer bookId, String bookName, Integer bookType) {//改
-        List<Book> returnbook = null;
+    public Result findbookbyidnametype(Integer currentPage, Integer pageSize, Map<String,String> search) {
+        List<Book> findbook = new ArrayList<>();
         List<Book> allbook = bookMapper.findAllBook();
         for (Book onebook:allbook)
         {
-            if(onebook.getBookId().equals(bookId) || onebook.getBookName().equals(bookName) || onebook.getType().equals(bookType))
+            if(onebook.getBookId().equals(search.get("bookId")) || onebook.getBookName().equals(search.get("bookName")) || onebook.getType().equals(search.get("bookType")))
             {
-                returnbook.add(onebook);
+                findbook.add(onebook);
             }
         }
-        return returnbook;
+        if(findbook.size() == 0)
+        {
+            return Result.error("400","查无此书");
+        }
+        /*List<Book> returnbook = findbook.subList((currentPage-1)*pageSize,currentPage*pageSize);
+        Result result  = Result.success(returnbook);
+        result.setMessage("查询成功!");
+        return result;*/
+        //有问题（Bookname）
+        LambdaQueryWrapper<Book> wrapper = Wrappers.<Book>lambdaQuery()
+                .eq(Book::getBookId,search.get("bookId"))
+                .or()
+                .eq(Book::getBookName,search.get("bookName"))
+                .or()
+                .eq(Book::getType,Integer.getInteger(search.get("type")));
+        Page<Book> bookPage = bookMapper.selectPage(new Page<>(currentPage,pageSize),wrapper);
+
+        Result result  = Result.success(bookPage);
+        result.setMessage("查询成功!");
+        return result;
+
     }
 }

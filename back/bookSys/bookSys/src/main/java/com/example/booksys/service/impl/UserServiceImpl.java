@@ -31,10 +31,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         {
             if(oneuser.getID().equals(ID) && oneuser.getPassword().equals(password) && oneuser.getType() == type)
             {
+                Result result = Result.success();
+                result.setMessage("登陆成功");
                 return Result.success();
             }
         }
-        return  Result.error("400","参数错误");
+        return  Result.error("400","登陆成功");
     }
 
 }

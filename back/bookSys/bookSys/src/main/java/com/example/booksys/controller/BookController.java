@@ -5,10 +5,12 @@ import com.example.booksys.common.Result;
 import com.example.booksys.entity.Book;
 import com.example.booksys.mapper.BookMapper;
 import com.example.booksys.service.impl.BookServiceImpl;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -51,15 +53,12 @@ public class BookController {
         return bookService.deletebookbyid(id);
     }
 
-    @RequestMapping("/search")//(改，需分页）
-    public List<Book> findbookbyidnametype(@RequestParam(value = "currentPage",required = true) Integer currentPage,
+    @RequestMapping("/search")
+    public Result findbookbyidnametype(@RequestParam(value = "currentPage",required = true) Integer currentPage,
                                            @RequestParam(value = "pageSize",required = true) Integer pageSize,
-                                           @RequestParam(value = "bookId",required = false,defaultValue = "-1") Integer bookId,
-                                           @RequestParam(value = "bookName",required = false,defaultValue = "-1") String bookName,
-                                           @RequestParam(value = "bookType",required = false,defaultValue = "-1") Integer bookType)
+                                           @RequestBody Map<String,String> search)
     {
-        Integer returnid = (currentPage-1)*pageSize + bookId;
-        return  bookService.findbookbyidnametype(returnid,bookName,bookType);
+        return  bookService.findbookbyidnametype(currentPage,pageSize,search);
     }
 }
 

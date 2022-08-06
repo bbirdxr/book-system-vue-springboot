@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.booksys.entity.User;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -23,5 +24,5 @@ public interface IBookService extends IService<Book> {
     public Result modifybook(Book book);
 
     public Result deletebookbyid(Integer id);
-    public List<Book> findbookbyidnametype(Integer bookId, String bookName, Integer bookType);//改
+    public Result findbookbyidnametype(Integer currentPage, Integer pageSize, Map<String,String> search);
 }
