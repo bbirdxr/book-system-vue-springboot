@@ -32,8 +32,8 @@ public class UserController {
     private UserServiceImpl userService;
 
     @RequestMapping
-    public Result login(@RequestParam(value = "userName",required = true) String userName,
-                        @RequestParam(value = "pwd",required = true)String pwd,
+    public Result login(@RequestParam(value = "ID",required = true) String userName,
+                        @RequestParam(value = "password",required = true)String pwd,
                         @RequestParam(value = "type",required = true)Integer type) {
         return  userService.login(userName, pwd, type);
     }

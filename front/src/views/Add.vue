@@ -47,7 +47,7 @@
           <el-button
             type="primary"
             @click="submitForm('ruleForm')"
-            style="margin-left:500px"
+            style="margin-left: 500px"
             >提交</el-button
           >
           <el-button @click="resetForm('ruleForm')">重置</el-button>
@@ -105,8 +105,8 @@ export default {
               },
             })
             .then((res) => {
-              console.log(res.data);
-              if (res.data.code == 200) {
+              console.log(res);
+              if (res.code == 200) {
                 alert("添加成功");
                 this.$router.push("/adminmanagelist");
               } else {
@@ -137,6 +137,6 @@ export default {
 }
 .margin {
   margin-left: 34%;
-  width: 326px
+  width: 326px;
 }
 </style>

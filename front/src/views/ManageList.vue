@@ -202,6 +202,7 @@ export default {
           },
         })
         .then((res) => {
+          console.log(res.code);
           this.bookData = res.data.records;
           this.total = res.data.total;
         });

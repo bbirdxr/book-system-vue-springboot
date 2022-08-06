@@ -10,10 +10,7 @@
         size="large"
       >
         <el-form-item label="id" prop="bookId" class="margin">
-          <el-input
-            v-model="ruleForm.bookId"
-            :disabled="true"
-          ></el-input>
+          <el-input v-model="ruleForm.bookId" :disabled="true"></el-input>
         </el-form-item>
 
         <el-form-item label="图书名" prop="bookName" class="margin">
@@ -122,8 +119,8 @@ export default {
               },
             })
             .then((res) => {
-              console.log(res.data);
-              if (res.data.code == 200) {
+              console.log(res);
+              if (res.code == 200) {
                 alert("修改成功");
                 this.$router.push("/adminmanagelist");
               } else {
@@ -154,7 +151,7 @@ export default {
 }
 .margin {
   margin-left: 34%;
-  width: 326px
+  width: 326px;
 }
 .button1 {
   width: 60px;

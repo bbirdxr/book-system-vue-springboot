@@ -98,7 +98,7 @@ export default {
         })
         .then((res) => {
           console.log(res.data);
-          if (res.data.code == 200) {
+          if (res.code == 200) {
             alert("登录成功");
             if (this.ruleForm.userClass == 0)
               this.$router.push("/adminmanagelist");
