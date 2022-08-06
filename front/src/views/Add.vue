@@ -96,13 +96,11 @@ export default {
         if (valid) {
           request
             .post("/bookinfo/add", {
-              params: {
-                bookName: this.ruleForm.bookName,
-                type: this.ruleForm.bookType,
-                author: this.ruleForm.author,
-                price: this.ruleForm.price,
-                language: this.ruleForm.type,
-              },
+              bookName: this.ruleForm.bookName,
+              type: this.ruleForm.bookType,
+              author: this.ruleForm.author,
+              price: this.ruleForm.price,
+              language: this.ruleForm.type,
             })
             .then((res) => {
               console.log(res);

@@ -194,15 +194,15 @@ export default {
       console.log(this.pageSize);
       console.log(this.search);
       request
-        .get("/bookinfo/search", {
-          params: {
-            currentPage: this.currentPage,
-            pageSize: this.pageSize,
-            search: this.search,
-          },
-        })
+        .post(
+          "bookinfo/search?currentPage=" +
+            this.currentPage +
+            "&pageSize=" +
+            this.pageSize,
+          this.search
+        )
         .then((res) => {
-          console.log(res.code);
+          console.log(res);
           this.bookData = res.data.records;
           this.total = res.data.total;
         });

@@ -53,10 +53,10 @@ public class BookController {
         return bookService.deletebookbyid(id);
     }
 
-    @RequestMapping("/search")
+    @PostMapping("/search")
     public Result findbookbyidnametype(@RequestParam(value = "currentPage",required = true) Integer currentPage,
                                            @RequestParam(value = "pageSize",required = true) Integer pageSize,
-                                           @RequestBody Map<String,String> search)
+                                           @RequestBody(required = false) Map<String,String> search)
     {
         return  bookService.findbookbyidnametype(currentPage,pageSize,search);
     }

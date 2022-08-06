@@ -40,7 +40,14 @@
         </el-select>
       </span>
       <!--类别筛选-->
-      <span><el-button @click="query" size="large" style="background-color: rgba(230, 139, 12, 0.404)">查询</el-button></span>
+      <span
+        ><el-button
+          @click="query"
+          size="large"
+          style="background-color: rgba(230, 139, 12, 0.404)"
+          >查询</el-button
+        ></span
+      >
     </div>
     <!--搜索区域-->
     <!--表格-->
@@ -53,7 +60,16 @@
     >
       <el-table-column prop="bookId" label="图书编号" />
       <el-table-column prop="bookName" label="名称" />
-      <el-table-column prop="type" label="类型" />
+      <el-table-column prop="type" label="类型">
+        <template #default="scope">
+          <span v-if="scope.row.type == 1">文学类</span>
+          <span v-if="scope.row.type == 2">历史类</span>
+          <span v-if="scope.row.type == 3">工学类</span>
+          <span v-if="scope.row.type == 4">法学类</span>
+          <span v-if="scope.row.type == 5">经济学类</span>
+          <span v-if="scope.row.type == 6">统计学类</span></template
+        >
+      </el-table-column>
       <el-table-column prop="author" label="作者" />
       <el-table-column prop="price" label="价格" />
       <el-table-column prop="language" label="语言" />
@@ -142,13 +158,13 @@ export default {
       console.log(this.pageSize);
       console.log(this.search);
       request
-        .get("bookinfo/search", {
-          params: {
-            currentPage: this.currentPage,
-            pageSize: this.pageSize,
-            search: this.search,
-          },
-        })
+        .post(
+          "bookinfo/search?currentPage=" +
+            this.currentPage +
+            "&pageSize=" +
+            this.pageSize,
+          this.search
+        )
         .then((res) => {
           console.log(res);
           this.bookData = res.data.records;
