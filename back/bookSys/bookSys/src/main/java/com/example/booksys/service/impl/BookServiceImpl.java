@@ -2,6 +2,7 @@ package com.example.booksys.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.booksys.common.Result;
@@ -99,183 +100,209 @@ public class BookServiceImpl extends ServiceImpl<BookMapper, Book> implements IB
 //                "bookName": "",
 //                "bookType": "1"
 //        }
-        List<Book>allbook = bookMapper.findAllBook();
-        boolean havebookId = true;
-        boolean havebookName = true;
-        boolean havebookType = true;
-        if(search.get("bookId").equals(""))
-        {
-            havebookId = false;
-        }
-        if(search.get("bookName").equals(""))
-        {
-            havebookName = false;
-        }
-        if(search.get("bookType").equals(""))
-        {
-            havebookType = false;
-        }
 
-        /*example{
-            {
-                "bookId": "", "123", "123","123"
-                "bookName": "", "", "123","123"
-                "bookType": "", "", "",   123"
-               if:
+        QueryWrapper<Book> queryWrapper = new QueryWrapper();
+        String bId =  search.get("bookId");
+        String bName =  search.get("bookName");
+        String bType =  search.get("bookType");
+        if (!StringUtils.isEmpty(bId)){
+            queryWrapper.eq("bookId",Integer.valueOf(search.get("bookId")));
         }
-        }*/
-        LambdaQueryWrapper<Book> wrapper = Wrappers.<Book>lambdaQuery();
-        if(!havebookId&&!havebookName&&!havebookType)
-        {
-            return Result.error("400","输入错误");
+        if (!StringUtils.isEmpty(bName)){
+            queryWrapper.like("bookName",bName);
         }
-        else if(havebookId&&!havebookName&&!havebookType)
-        {
-            boolean ifbookIdexist = false;
-            for (Book onebook :allbook)
-            {
-                if(onebook.getBookId().equals(Integer.valueOf(search.get("bookId"))))
-                {
-                    ifbookIdexist = true;
-                }
-            }
-            if(ifbookIdexist)
-            {
-                wrapper.eq(Book::getBookId,Integer.valueOf(search.get("bookId")));
-            }
-            else
-            {
-                return Result.error("400","输入错误");
-            }
+        if (!StringUtils.isEmpty(bType)){
+            queryWrapper.eq("type",Integer.valueOf(search.get("bookType")));
         }
-        else if(!havebookId&&havebookName&&!havebookType)
-        {
-            boolean ifbookNameexist = false;
-            for (Book onebook :allbook)
-            {
-                if(onebook.getBookName().equals(search.get("bookName")))
-                {
-                    ifbookNameexist = true;
-                }
-            }
-            if(ifbookNameexist)
-            {
-                wrapper.eq(Book::getBookName,search.get("bookName"));
-            }
-            else
-            {
-                return Result.error("400","输入错误");
-            }
-        }
-        else if(!havebookId&&!havebookName&&havebookType)
-        {
-            boolean ifbookTypeexist = false;
-            for (Book onebook :allbook)
-            {
-                if(onebook.getType().equals(Integer.valueOf(search.get("bookType"))))
-                {
-                    ifbookTypeexist = true;
-                }
-            }
-            if(ifbookTypeexist)
-            {
-                wrapper.eq(Book::getType,Integer.valueOf(search.get("bookType")));
-            }
-            else
-            {
-                return Result.error("400","输入错误");
-            }
-        }
-        else if(havebookId&&havebookName&&!havebookType)
-        {
-            boolean ifexist = false;
-            for (Book onebook :allbook)
-            {
-                if(onebook.getBookId().equals(Integer.valueOf(search.get("bookId")))&&onebook.getBookName().equals(search.get("bookName")))
-                {
-                    ifexist = true;
-                }
-            }
-            if(ifexist)
-            {
-                wrapper.and(i->i
-                        .eq(Book::getBookId,Integer.valueOf(search.get("bookId")))
-                        .eq(Book::getBookName,search.get("bookName")));
-            }
-            else
-            {
-                return Result.error("400","输入错误");
-            }
-        }
-        else if(!havebookId&&havebookName&&havebookType)
-        {
-            boolean ifexist = false;
-            for (Book onebook :allbook)
-            {
-                if(onebook.getType().equals(Integer.valueOf(search.get("bookType")))&&onebook.getBookName().equals(search.get("bookName")))
-                {
-                    ifexist = true;
-                }
-            }
-            if(ifexist)
-            {
-                wrapper.and(i->i
-                        .eq(Book::getBookId,Integer.valueOf(search.get("bookType")))
-                        .eq(Book::getBookName,search.get("bookName")));
-            }
-            else
-            {
-                return Result.error("400","输入错误");
-            }
-        }
-        else if(havebookId&&!havebookName&&havebookType)
-        {
-            boolean ifexist = false;
-            for (Book onebook :allbook)
-            {
-                if(onebook.getBookId().equals(Integer.valueOf(search.get("bookId")))&&onebook.getType().equals(Integer.valueOf(search.get("bookType"))))
-                {
-                    ifexist = true;
-                }
-            }
-            if(ifexist)
-            {
-                wrapper.and(i->i
-                        .eq(Book::getBookId,Integer.valueOf(search.get("bookId")))
-                        .eq(Book::getType,Integer.valueOf(search.get("bookType"))));
-            }
-            else
-            {
-                return Result.error("400","输入错误");
-            }
-        }
-        else
-        {
-            boolean ifexist = false;
-            for (Book onebook :allbook)
-            {
-                if(onebook.getBookId().equals(Integer.valueOf(search.get("bookId")))&&onebook.getBookName().equals(search.get("bookName"))&&onebook.getType().equals(Integer.valueOf(search.get("bookType"))))
-                {
-                    ifexist = true;
-                }
-            }
-            if(ifexist)
-            {
-                wrapper.and(i->i
-                        .eq(Book::getBookId,Integer.valueOf(search.get("bookId")))
-                        .eq(Book::getBookName,search.get("bookName"))
-                        .eq(Book::getType,Integer.valueOf(search.get("bookType"))));
-            }
-            else
-            {
-                return Result.error("400","输入错误");
-            }
-        }
-        Page<Book> bookPage = bookMapper.selectPage(new Page<>(currentPage,pageSize),wrapper);
+//        LambdaQueryWrapper<Book> wrapper = Wrappers.<Book>lambdaQuery()
+//                .eq(Book::getBookId,Integer.valueOf(search.get("bookId")))
+//                .or()
+//                .eq(Book::getBookName,search.get("bookName"))
+//                .or()
+//                .eq(Book::getType,Integer.valueOf(search.get("bookType")));
+        Page<Book> bookPage = bookMapper.selectPage(new Page<>(currentPage,pageSize),queryWrapper);
 
         Result result  = Result.success(bookPage);
         result.setMessage("查询成功!");
         return result;
+
+//        List<Book>allbook = bookMapper.findAllBook();
+//        boolean havebookId = true;
+//        boolean havebookName = true;
+//        boolean havebookType = true;
+//        if(search.get("bookId").equals(""))
+//        {
+//            havebookId = false;
+//        }
+//        if(search.get("bookName").equals(""))
+//        {
+//            havebookName = false;
+//        }
+//        if(search.get("bookType").equals(""))
+//        {
+//            havebookType = false;
+//        }
+//
+//        /*example{
+//            {
+//                "bookId": "", "123", "123","123"
+//                "bookName": "", "", "123","123"
+//                "bookType": "", "", "",   123"
+//               if:
+//        }
+//        }*/
+//        LambdaQueryWrapper<Book> wrapper = Wrappers.<Book>lambdaQuery();
+//        if(!havebookId&&!havebookName&&!havebookType)
+//        {
+//            return Result.error("400","输入错误");
+//        }
+//        else if(havebookId&&!havebookName&&!havebookType)
+//        {
+//            boolean ifbookIdexist = false;
+//            for (Book onebook :allbook)
+//            {
+//                if(onebook.getBookId().equals(Integer.valueOf(search.get("bookId"))))
+//                {
+//                    ifbookIdexist = true;
+//                }
+//            }
+//            if(ifbookIdexist)
+//            {
+//                wrapper.eq(Book::getBookId,Integer.valueOf(search.get("bookId")));
+//            }
+//            else
+//            {
+//                return Result.error("400","输入错误");
+//            }
+//        }
+//        else if(!havebookId&&havebookName&&!havebookType)
+//        {
+//            boolean ifbookNameexist = false;
+//            for (Book onebook :allbook)
+//            {
+//                if(onebook.getBookName().equals(search.get("bookName")))
+//                {
+//                    ifbookNameexist = true;
+//                }
+//            }
+//            if(ifbookNameexist)
+//            {
+//                wrapper.eq(Book::getBookName,search.get("bookName"));
+//            }
+//            else
+//            {
+//                return Result.error("400","输入错误");
+//            }
+//        }
+//        else if(!havebookId&&!havebookName&&havebookType)
+//        {
+//            boolean ifbookTypeexist = false;
+//            for (Book onebook :allbook)
+//            {
+//                if(onebook.getType().equals(Integer.valueOf(search.get("bookType"))))
+//                {
+//                    ifbookTypeexist = true;
+//                }
+//            }
+//            if(ifbookTypeexist)
+//            {
+//                wrapper.eq(Book::getType,Integer.valueOf(search.get("bookType")));
+//            }
+//            else
+//            {
+//                return Result.error("400","输入错误");
+//            }
+//        }
+//        else if(havebookId&&havebookName&&!havebookType)
+//        {
+//            boolean ifexist = false;
+//            for (Book onebook :allbook)
+//            {
+//                if(onebook.getBookId().equals(Integer.valueOf(search.get("bookId")))&&onebook.getBookName().equals(search.get("bookName")))
+//                {
+//                    ifexist = true;
+//                }
+//            }
+//            if(ifexist)
+//            {
+//                wrapper.and(i->i
+//                        .eq(Book::getBookId,Integer.valueOf(search.get("bookId")))
+//                        .eq(Book::getBookName,search.get("bookName")));
+//            }
+//            else
+//            {
+//                return Result.error("400","输入错误");
+//            }
+//        }
+//        else if(!havebookId&&havebookName&&havebookType)
+//        {
+//            boolean ifexist = false;
+//            for (Book onebook :allbook)
+//            {
+//                if(onebook.getType().equals(Integer.valueOf(search.get("bookType")))&&onebook.getBookName().equals(search.get("bookName")))
+//                {
+//                    ifexist = true;
+//                }
+//            }
+//            if(ifexist)
+//            {
+//                wrapper.and(i->i
+//                        .eq(Book::getBookId,Integer.valueOf(search.get("bookType")))
+//                        .eq(Book::getBookName,search.get("bookName")));
+//            }
+//            else
+//            {
+//                return Result.error("400","输入错误");
+//            }
+//        }
+//        else if(havebookId&&!havebookName&&havebookType)
+//        {
+//            boolean ifexist = false;
+//            for (Book onebook :allbook)
+//            {
+//                if(onebook.getBookId().equals(Integer.valueOf(search.get("bookId")))&&onebook.getType().equals(Integer.valueOf(search.get("bookType"))))
+//                {
+//                    ifexist = true;
+//                }
+//            }
+//            if(ifexist)
+//            {
+//                wrapper.and(i->i
+//                        .eq(Book::getBookId,Integer.valueOf(search.get("bookId")))
+//                        .eq(Book::getType,Integer.valueOf(search.get("bookType"))));
+//            }
+//            else
+//            {
+//                return Result.error("400","输入错误");
+//            }
+//        }
+//        else
+//        {
+//            boolean ifexist = false;
+//            for (Book onebook :allbook)
+//            {
+//                if(onebook.getBookId().equals(Integer.valueOf(search.get("bookId")))&&onebook.getBookName().equals(search.get("bookName"))&&onebook.getType().equals(Integer.valueOf(search.get("bookType"))))
+//                {
+//                    ifexist = true;
+//                }
+//            }
+//            if(ifexist)
+//            {
+//                wrapper.and(i->i
+//                        .eq(Book::getBookId,Integer.valueOf(search.get("bookId")))
+//                        .eq(Book::getBookName,search.get("bookName"))
+//                        .eq(Book::getType,Integer.valueOf(search.get("bookType"))));
+//            }
+//            else
+//            {
+//                return Result.error("400","输入错误");
+//            }
+//        }
+//        Page<Book> bookPage = bookMapper.selectPage(new Page<>(currentPage,pageSize),wrapper);
+//
+//        Result result  = Result.success(bookPage);
+//        result.setMessage("查询成功!");
+//        return result;
 
     }
 }

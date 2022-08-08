@@ -33,6 +33,7 @@ public class Book implements Serializable {
     private String bookName;
 
     @ApiModelProperty("类型")
+    @TableField(value = "type")
     private Integer type;
 
     @ApiModelProperty("作者")
